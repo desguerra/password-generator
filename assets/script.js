@@ -1,24 +1,31 @@
-// Assignment code here
+// Assignment code here //
 
-/* CHARACTER FUNCTIONS */
-
+/* LOWER, UPPER, NUMERIC, AND SPECIAL CHARACTER FUNCTIONS */
 function getLower() {
-    var res = "1";
+    var randomGen = Math.floor(Math.random() * 26 + 97);
+    var res = String.fromCharCode(randomGen);
     return res;
 };
 
 function getUpper() {
-    var res = "2";
+    var randomGen = Math.floor(Math.random() * 26 + 65);
+    var res = String.fromCharCode(randomGen);
     return res;
 };
 
 function getNumeric() {
-    var res = "3";
+    var randomGen = Math.floor(Math.random() * 10 + 48);
+    var res = String.fromCharCode(randomGen);
     return res;
 };
 
 function getSpecialChar() {
-    var res = "4";
+    // list of the 33 special characters according to OWASP
+    // https://owasp.org/www-community/password-special-characters
+    var specialCharList = [" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"];
+    
+    var randomGen = Math.floor(Math.random() * 33);
+    var res = specialCharList[randomGen];
     return res;
 };
 
@@ -52,32 +59,34 @@ function generatePassword() {
     if (!isLower && !isUpper && !isNumeric && !isSpecialChar) {
         window.alert("Must select at least once character type. Please try again.");
     }
+    else { // else, return a generated password that matches selected criteria
+        
+        for (var i = 0; i < charLimit; i++) {
 
-    // finally, return a generated password that matches selected criteria
-    for (var i = 0; i < charLimit; i++) {
-
-        // randomize the characters that go into the new pw, given the selected criteria
-        var random = Math.floor(Math.random() * 4 + 1);
-        if (random === 1 && isLower) {
-            newPassword += getLower();
-        }
-        else if (random === 2 && isUpper) {
-            newPassword += getUpper();
-        }
-        else if (random === 3 && isNumeric) {
-            newPassword += getNumeric();
-        }
-        else if (random === 4 && isSpecialChar) {
-            newPassword += getSpecialChar();
-        }
-        else {
-            // if none of the above, then loop again
-            charLimit += 1;
-        }
-    };
+            // randomize the characters that go into the new pw, given the selected criteria
+            var random = Math.floor(Math.random() * 4 + 1);
+            if (random === 1 && isLower) {
+                newPassword += getLower();
+            }
+            else if (random === 2 && isUpper) {
+                newPassword += getUpper();
+            }
+            else if (random === 3 && isNumeric) {
+                newPassword += getNumeric();
+            }
+            else if (random === 4 && isSpecialChar) {
+                newPassword += getSpecialChar();
+            }
+            else {
+                // if none of the above, then loop again
+                charLimit += 1;
+            }
+        };
+    }
 
     return newPassword;
 };
+/* END OF GENERATE PASSWORD FUNCTION */
 
 
 // Get references to the #generate element
