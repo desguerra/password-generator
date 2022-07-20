@@ -1,9 +1,31 @@
 // Assignment code here
 
-// generate password function
+/* CHARACTER FUNCTIONS */
+
+function getLower() {
+    var res = "1";
+    return res;
+};
+
+function getUpper() {
+    var res = "2";
+    return res;
+};
+
+function getNumeric() {
+    var res = "3";
+    return res;
+};
+
+function getSpecialChar() {
+    var res = "4";
+    return res;
+};
+
+/* GENERATE PASSWORD FUNCTION */
 function generatePassword() {
     // make new variable for generated password
-    var newPassword = "testing - hello, World!";
+    var newPassword = "";
 
     // if length of pw is NOT between 8 and 128 char, try again (loop back)
     var charLimit = window.prompt("How many characters would you like your password to contain?");
@@ -14,27 +36,49 @@ function generatePassword() {
     }
     // else, continue
 
-    // if lowercase
-    var isLower = window.confirm("Click OK to confirm including lowercase characters.");
+    // is lowercase?
+    var isLower = window.confirm("Click OK if you would like to include lowercase characters.");
 
-    // if uppercase
-    var isUpper = window.confirm("Click OK to confirm including uppercase characters.");
+    // is uppercase?
+    var isUpper = window.confirm("Click OK if you would like to include uppercase characters.");
 
-    // if numeric
-    var isNumeric = window.confirm("Click OK to confirm including numeric characters.");
+    // is numeric?
+    var isNumeric = window.confirm("Click OK if you would like to include numeric characters.");
 
-    // if special characters
-    var isSpecialChar = window.confirm("Click OK to confirm including special characters.");
+    // is special characters?
+    var isSpecialChar = window.confirm("Click OK if you would like to include special characters.");
 
     // if NONE OF THE ABOVE, then try again (loop back)
     if (!isLower && !isUpper && !isNumeric && !isSpecialChar) {
         window.alert("Must select at least once character type. Please try again.");
-        generatePassword();
     }
 
     // finally, return a generated password that matches selected criteria
+    for (var i = 0; i < charLimit; i++) {
+
+        // randomize the characters that go into the new pw, given the selected criteria
+        var random = Math.floor(Math.random() * 4 + 1);
+        if (random === 1 && isLower) {
+            newPassword += getLower();
+        }
+        else if (random === 2 && isUpper) {
+            newPassword += getUpper();
+        }
+        else if (random === 3 && isNumeric) {
+            newPassword += getNumeric();
+        }
+        else if (random === 4 && isSpecialChar) {
+            newPassword += getSpecialChar();
+        }
+        else {
+            // if none of the above, then loop again
+            charLimit += 1;
+        }
+    };
+
     return newPassword;
 };
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
