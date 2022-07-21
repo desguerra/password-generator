@@ -34,7 +34,7 @@ function generatePassword() {
     // make new variable for generated password
     var newPassword = "";
 
-    // if length of pw is NOT between 8 and 128 char, try again (loop back)
+    // if length of pw is between 8 and 128 chars, and if only numerics were entered, continue
     var charLimit = window.prompt("How many characters would you like your password to contain?");
     parsedCharLimit = parseInt(charLimit);
 
