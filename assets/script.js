@@ -36,9 +36,9 @@ function generatePassword() {
 
     // if length of pw is NOT between 8 and 128 char, try again (loop back)
     var charLimit = window.prompt("How many characters would you like your password to contain?");
-    charLimit = parseInt(charLimit);
+    parsedCharLimit = parseInt(charLimit);
 
-    if (charLimit > 7 || charLimit < 129) {
+    if ((parsedCharLimit > 7 || parsedCharLimit < 129) && (charLimit == parsedCharLimit)) {
         // is lowercase?
         var isLower = window.confirm("Click OK if you would like to include lowercase characters.");
 
@@ -83,7 +83,7 @@ function generatePassword() {
             return newPassword;
         }
     }
-    else { // else, continue
+    else { // else, try again
         window.alert("Sorry! Password must be between 8 - 128 characters. Please enter a valid password length.")
         return newPassword;
     }
