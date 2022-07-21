@@ -34,12 +34,14 @@ function generatePassword() {
     // make new variable for generated password
     var newPassword = "";
 
+    debugger;
+
     // if length of pw is NOT between 8 and 128 char, try again (loop back)
     var charLimit = window.prompt("How many characters would you like your password to contain?");
     charLimit = parseInt(charLimit);
     if (charLimit < 8 || charLimit > 128) {
         window.alert("Sorry! Password must be between 8 - 128 characters. Please enter a valid password length.")
-        generatePassword();
+        return newPassword;
     }
     // else, continue
 
@@ -58,6 +60,7 @@ function generatePassword() {
     // if NONE OF THE ABOVE, then try again (loop back)
     if (!isLower && !isUpper && !isNumeric && !isSpecialChar) {
         window.alert("Must select at least once character type. Please try again.");
+        return newPassword;
     }
     else { // else, return a generated password that matches selected criteria
         
@@ -82,9 +85,9 @@ function generatePassword() {
                 charLimit += 1;
             }
         };
-    }
 
-    return newPassword;
+        return newPassword;
+    }
 };
 /* END OF GENERATE PASSWORD FUNCTION */
 
