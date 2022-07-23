@@ -38,7 +38,7 @@ function generatePassword() {
     var charLimit = window.prompt("How many characters would you like your password to contain?");
     parsedCharLimit = parseInt(charLimit);
 
-    if ((parsedCharLimit > 7 || parsedCharLimit < 129) && (charLimit == parsedCharLimit)) {
+    if ((parsedCharLimit > 7 && parsedCharLimit < 129) && (charLimit == parsedCharLimit)) {
         // is lowercase?
         var isLower = window.confirm("Click OK if you would like to include lowercase characters.");
 
