@@ -58,7 +58,7 @@ function generatePassword() {
         }
         else { // else, return a generated password that matches selected criteria
             
-            for (var i = 0; i < charLimit; i++) {
+            for (var i = 0; i < parsedCharLimit; i++) {
 
                 // randomize the characters that go into the new pw, given the selected criteria
                 var random = Math.floor(Math.random() * 4 + 1);
@@ -76,7 +76,7 @@ function generatePassword() {
                 }
                 else {
                     // if none of the above, then loop again
-                    charLimit += 1;
+                    parsedCharLimit += 1;
                 }
             };
 
